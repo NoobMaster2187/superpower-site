@@ -102,91 +102,77 @@ button:hover{
 
 <script>
 const gucler = [
-    {
-        isim:"⚡ Yıldırım Kontrolü",
-        seviye:"Şehir İçi Savaş Seviyesi",
-        aciklama:"Kullanıcı elektrik üretebilir, yönlendirebilir ve bedenini yüksek voltaja karşı dayanıklı hale getirebilir.",
-        kapasite:"Birden fazla hedefe yıldırım gönderebilir, elektronik sistemleri bozabilir ve kısa süreli elektrik patlamaları oluşturabilir.",
-        limit:"Büyük fırtınalar yaratamaz. Aşırı kullanım kas spazmı ve yorgunluk oluşturur."
-    },
-    {
-        isim:"🔥 Ateş Manipülasyonu",
-        seviye:"Bina Seviyesi",
-        aciklama:"Kullanıcı ellerinden alev çıkarabilir, çevredeki ateşi kontrol edebilir ve saldırılarını patlayıcı hale getirebilir.",
-        kapasite:"Yakın ve orta mesafede çok etkilidir. Kapalı alanları hızla yakabilir ve savunma amaçlı ateş duvarı oluşturabilir.",
-        limit:"Oksijensiz ortamda zayıflar. Su ve yoğun soğuk gücü baskılayabilir."
-    },
-    {
-        isim:"🌪️ Rüzgar Manipülasyonu",
-        seviye:"Mahalle Seviyesi",
-        aciklama:"Kullanıcı hava akımlarını kontrol ederek keskin rüzgar darbeleri, savunma bariyerleri ve yüksek hızlı hareket kabiliyeti kazanır.",
-        kapasite:"Rakipleri uzaklaştırabilir, mermilerin yönünü bozabilir ve kısa süreli süzülme/uçuş sağlayabilir.",
-        limit:"Kapalı ve dar alanlarda gücü düşer. Çok büyük kasırgalar oluşturamaz."
-    },
-    {
-        isim:"❄️ Buz Gücü",
-        seviye:"Bina - Mahalle Seviyesi",
-        aciklama:"Kullanıcı buz oluşturabilir, zemini dondurabilir ve düşman hareketlerini kısıtlayabilir.",
-        kapasite:"Buzdan silahlar, duvarlar ve tuzaklar yapabilir. Rakipleri yavaşlatmada çok başarılıdır.",
-        limit:"Çok sıcak ortamlarda dayanıklılığı azalır. Sürekli buz üretimi enerji tüketir."
-    },
-    {
-        isim:"🌀 Işınlanma",
-        seviye:"Taktiksel Üstünlük Seviyesi",
-        aciklama:"Kullanıcı kısa mesafelerde anlık yer değiştirebilir. Saldırıdan kaçmak ve rakibin arkasına geçmek için idealdir.",
-        kapasite:"Görüş alanındaki noktalara ışınlanabilir. Savaşta yakalanması çok zordur.",
-        limit:"Görmediği yerlere ışınlanamaz. Art arda kullanım baş dönmesi yapar."
-    },
-    {
-        isim:"👁️ Zihin Okuma",
-        seviye:"Stratejik Seviye",
-        aciklama:"Kullanıcı yakınındaki insanların yüzeysel düşüncelerini okuyabilir ve niyetlerini anlayabilir.",
-        kapasite:"Yalanları fark edebilir, rakibin saldırı planını önceden sezebilir ve sorgulamada avantaj sağlar.",
-        limit:"Güçlü iradeli kişiler direnebilir. Aynı anda çok fazla zihin okumak kullanıcıyı yorar."
-    },
-    {
-        isim:"💪 Süper Fiziksel Güç",
-        seviye:"Bina Seviyesi",
-        aciklama:"Kullanıcı insanüstü kas gücü, dayanıklılık ve refleks kazanır.",
-        kapasite:"Beton duvarları kırabilir, araçları kaldırabilir ve yakın dövüşte ağır üstünlük kurabilir.",
-        limit:"Menzilli saldırılara karşı avantaj sağlamaz. Zihinsel veya enerji tabanlı güçlere karşı zayıf kalabilir."
-    },
-    {
-        isim:"🌊 Su Manipülasyonu",
-        seviye:"Mahalle Seviyesi",
-        aciklama:"Kullanıcı çevredeki suyu kontrol edebilir, basınçlı su saldırıları yapabilir ve savunma kalkanları oluşturabilir.",
-        kapasite:"Su bulunan ortamlarda çok güçlenir. Rakibi bağlayabilir, itebilir veya boğulma tehlikesi yaratabilir.",
-        limit:"Susuz ortamlarda gücü ciddi şekilde azalır."
-    },
-    {
-        isim:"☠️ Gölge Gücü",
-        seviye:"Suikast / Gizlilik Seviyesi",
-        aciklama:"Kullanıcı gölgeler arasında hareket edebilir, karanlık alanlarda güçlenir ve düşmanın görüşünü bozabilir.",
-        kapasite:"Kısa mesafeli gölge geçişleri yapabilir, karanlık zincirler oluşturabilir ve gizli saldırılarda çok etkilidir.",
-        limit:"Parlak ışık altında zayıflar. Açık gündüz alanlarında gücü sınırlanır."
-    },
-    {
-        isim:"🐉 Ejderha Formu",
-        seviye:"Küçük Kasaba Seviyesi",
-        aciklama:"Kullanıcı yarı-ejderha formuna dönüşerek büyük fiziksel güç, sert deri, kanat ve enerji nefesi kazanır.",
-        kapasite:"Uçabilir, ağır darbeler alabilir ve geniş alanlı enerji saldırıları yapabilir.",
-        limit:"Dönüşüm uzun süre korunamaz. Form bittikten sonra kullanıcı ciddi şekilde yorulur."
-    }
+  {
+    isim:"🔥 Alev Hükümdarlığı",
+    seviye:"Mahalle Seviyesi",
+    aciklama:"Kullanıcı kendi alevini üretebilir, yönlendirebilir ve bedenini yüksek ısıya dayanıklı hale getirebilir.",
+    limit:"Maksimum gücüyle yaklaşık bir mahalleyi yok edebilecek kadar ısı ve patlama gücü çıkarabilir. Şehir çapında yangın felaketi yaratamaz.",
+    resim:"https://s13.gifyu.com/images/bIqCa.png"
+  },
+  {
+    isim:"⚡ Fırtına Yıldırımı",
+    seviye:"Şehir İçi Savaş Seviyesi",
+    aciklama:"Kullanıcı elektrik üretebilir, yıldırım darbeleri indirebilir ve elektronik sistemleri bozabilir.",
+    limit:"En fazla birkaç binayı aynı anda kullanılamaz hale getirecek elektrik gücü çıkarabilir. Tüm şehri karartacak seviyeye ulaşamaz.",
+    resim:"https://s13.gifyu.com/images/bIqFW.png"
+  },
+  {
+    isim:"🌪️ Kasırga Nefesi",
+    seviye:"Mahalle Seviyesi",
+    aciklama:"Kullanıcı güçlü rüzgar akımları oluşturabilir, keskin hava darbeleri ve savunma bariyerleri yaratabilir.",
+    limit:"Maksimumda birkaç sokak genişliğinde yıkıcı rüzgar oluşturabilir. Gerçek bir şehir çapı kasırga yaratamaz.",
+    resim:"https://s13.gifyu.com/images/bIqFD.png"
+  },
+  {
+    isim:"🌊 Derin Deniz Kontrolü",
+    seviye:"Mahalle Seviyesi",
+    aciklama:"Kullanıcı çevredeki suyu kontrol edebilir, basınçlı su saldırıları ve su kalkanları oluşturabilir.",
+    limit:"En fazla küçük bir mahalleyi su altında bırakabilecek kadar suyu kontrol edebilir. Denizleri veya okyanusları kontrol edemez.",
+    resim:"https://s13.gifyu.com/images/bIqUS.png"
+  },
+  {
+    isim:"❄️ Mutlak Buz Alanı",
+    seviye:"Bina - Mahalle Seviyesi",
+    aciklama:"Kullanıcı buz üretebilir, zemini dondurabilir ve düşmanlarını buzla kısıtlayabilir.",
+    limit:"Maksimumda birkaç binayı ve çevresindeki sokakları dondurabilir. Bütün bir şehri buzul çağına çeviremez.",
+    resim:"https://s13.gifyu.com/images/bIqU7.png"
+  },
+  {
+    isim:"🌌 Yerçekimi Baskısı",
+    seviye:"Şehir Seviyesi",
+    aciklama:"Kullanıcı belirli alanlarda yerçekimini artırabilir, azaltabilir veya hedefleri yere sabitleyebilir.",
+    limit:"En fazla birkaç kilometrelik alanı etkileyebilir. Bir ülke veya gezegen çapında yerçekimi değişimi yapamaz.",
+    resim:"https://s13.gifyu.com/images/bIqUc.png"
+  },
+  {
+    isim:"🩸 Kan Demirciliği",
+    seviye:"Tehlikeli Yakın Savaş Seviyesi",
+    aciklama:"Kullanıcı kendi kanını sertleştirerek silah, zincir ve zırh benzeri yapılar oluşturabilir.",
+    limit:"Maksimumda bina seviyesinde yıkım yaratabilir. Fazla kullanımda kendi kan kaybı yüzünden ciddi şekilde zayıflar.",
+    resim:"https://s13.gifyu.com/images/bIqUV.png"
+  },
+  {
+    isim:"☠️ Gölge Geçidi",
+    seviye:"Suikast / Gizlilik Seviyesi",
+    aciklama:"Kullanıcı karanlık alanlarda gölgeler arasında hareket edebilir ve gölgeden saldırılar oluşturabilir.",
+    limit:"En fazla bir bina kompleksi içinde etkili olur. Açık ve parlak ışıklı alanlarda gücü ciddi şekilde düşer.",
+    resim:"https://s13.gifyu.com/images/bIqUf.jpg"
+  },
+  {
+    isim:"🌀 Kısa Mesafe Işınlanma",
+    seviye:"Taktiksel Üstünlük Seviyesi",
+    aciklama:"Kullanıcı görüş alanındaki noktalara anlık olarak yer değiştirebilir.",
+    limit:"Tek ışınlanmada en fazla birkaç yüz metre hareket edebilir. Görmediği veya bilmediği yerlere ışınlanamaz.",
+    resim:"https://s13.gifyu.com/images/bIqUD.webp"
+  },
+  {
+    isim:"🐉 Ejderha Uyanışı",
+    seviye:"Küçük Kasaba Seviyesi",
+    aciklama:"Kullanıcı yarı-ejderha formuna geçerek fiziksel güç, sert deri, kanat ve enerji nefesi kazanır.",
+    limit:"Maksimum gücüyle küçük bir kasabayı ağır hasara uğratabilir. Büyük şehirleri tek başına yok edecek seviyede değildir.",
+    resim:"https://s13.gifyu.com/images/bIqUO.jpg"
+  }
 ];
-
-function gucVer(){
-    const guc = gucler[Math.floor(Math.random() * gucler.length)];
-    const sonuc = document.getElementById("sonuc");
-
-    sonuc.style.display = "block";
-    sonuc.innerHTML = `
-        <div class="guc-adi">${guc.isim}</div>
-        <div class="info"><span class="label">Seviye:</span> ${guc.seviye}</div>
-        <div class="info"><span class="label">Açıklama:</span> ${guc.aciklama}</div>
-        <div class="info"><span class="label">Kullanım Kapasitesi:</span> ${guc.kapasite}</div>
-        <div class="info"><span class="label">Limit:</span> ${guc.limit}</div>
-    `;
-}
 </script>
 
 </body>
