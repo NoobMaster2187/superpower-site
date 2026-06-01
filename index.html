@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bileşik V Arşivi</title>
-
   <style>
     * {
       margin: 0;
@@ -12,14 +11,12 @@
       box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
-
     body {
       min-height: 100vh;
       background: #05070c;
       color: #e5e7eb;
       overflow-x: hidden;
     }
-
     .hero {
       min-height: 100vh;
       display: flex;
@@ -33,33 +30,28 @@
       background-size: cover;
       background-position: center;
     }
-
     .hero-content {
       max-width: 560px;
       z-index: 2;
     }
-
     .tag {
       color: #38bdf8;
       letter-spacing: 4px;
       font-size: 13px;
       margin-bottom: 18px;
     }
-
     h1 {
       font-size: 58px;
       line-height: 1;
       margin-bottom: 20px;
       letter-spacing: 2px;
     }
-
     .desc {
       color: #cbd5e1;
       font-size: 18px;
       line-height: 1.6;
       margin-bottom: 35px;
     }
-
     button {
       background: #0f172a;
       border: 1px solid #38bdf8;
@@ -71,20 +63,17 @@
       transition: 0.3s;
       box-shadow: 0 0 18px rgba(56,189,248,0.25);
     }
-
     button:hover {
       background: #38bdf8;
       color: #020617;
       box-shadow: 0 0 30px rgba(56,189,248,0.65);
     }
-
     .warning {
       margin-top: 25px;
       color: #ef4444;
       font-size: 13px;
       letter-spacing: 2px;
     }
-
     .visual-panel {
       width: 360px;
       max-width: 100%;
@@ -93,7 +82,6 @@
       padding: 16px;
       box-shadow: 0 0 40px rgba(56, 189, 248, 0.2);
     }
-
     .visual-img {
       height: 220px;
       background:
@@ -104,22 +92,18 @@
       border: 1px solid #334155;
       margin-bottom: 14px;
     }
-
     .system-line {
       font-size: 13px;
       color: #94a3b8;
       margin-bottom: 8px;
       letter-spacing: 1px;
     }
-
     .system-line span {
       color: #38bdf8;
     }
-
     .danger {
       color: #ef4444 !important;
     }
-
     .loader-screen {
       position: fixed;
       inset: 0;
@@ -131,7 +115,6 @@
       flex-direction: column;
       text-align: center;
     }
-
     .loader-box {
       width: 80%;
       max-width: 500px;
@@ -140,13 +123,11 @@
       background: rgba(15, 23, 42, 0.85);
       box-shadow: 0 0 40px rgba(59,130,246,0.25);
     }
-
     .loader-title {
       color: #38bdf8;
       letter-spacing: 3px;
       margin-bottom: 25px;
     }
-
     .bar {
       width: 100%;
       height: 14px;
@@ -155,29 +136,24 @@
       border: 1px solid #334155;
       margin-bottom: 20px;
     }
-
     .bar-fill {
       width: 0%;
       height: 100%;
       background: linear-gradient(90deg, #1d4ed8, #38bdf8);
     }
-
     .bar-fill.active {
       animation: load 4s forwards;
     }
-
     @keyframes load {
       to {
         width: 100%;
       }
     }
-
     .loading-text {
       color: #e5e7eb;
       font-size: 16px;
       min-height: 24px;
     }
-
     .result-section {
       display: none;
       min-height: 100vh;
@@ -188,27 +164,23 @@
         radial-gradient(circle at top, rgba(14,165,233,0.15), transparent 45%),
         #05070c;
     }
-
     .power-card {
       width: 100%;
-      max-width: 460px;
+      max-width: 520px;
       background: #0f172a;
       border: 1px solid #1e40af;
       padding: 28px;
       box-shadow: 0 0 35px rgba(59,130,246,0.25);
       animation: fadeIn 0.8s ease;
     }
-
     .power-card.double {
       border-color: #a855f7;
       box-shadow: 0 0 40px rgba(168,85,247,0.35);
     }
-
     .power-card.failed {
       border-color: #ef4444;
       box-shadow: 0 0 40px rgba(239,68,68,0.25);
     }
-
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -219,117 +191,95 @@
         transform: translateY(0);
       }
     }
-
     .file-code {
       color: #38bdf8;
       font-size: 13px;
       letter-spacing: 3px;
       margin-bottom: 14px;
     }
-
     .power-card h2 {
       font-size: 34px;
       margin-bottom: 18px;
     }
-
     .power-card p {
       color: #cbd5e1;
       line-height: 1.6;
       margin-bottom: 18px;
     }
-
     .limit {
       border-top: 1px solid #334155;
       padding-top: 18px;
       color: #fca5a5;
     }
-
+    .limit p {
+      color: #fca5a5;
+    }
     .again {
       margin-top: 24px;
       width: 100%;
     }
-
     @media (max-width: 900px) {
       .hero {
         flex-direction: column;
         align-items: flex-start;
         padding: 30px;
       }
-
       h1 {
         font-size: 42px;
       }
-
       .desc {
         font-size: 16px;
       }
-
       .visual-panel {
         width: 100%;
       }
     }
   </style>
 </head>
-
 <body>
-
   <section class="hero" id="hero">
     <div class="hero-content">
       <div class="tag">VOUGHT DENEY ARŞİVİ</div>
-
       <h1>BİLEŞİK V ARŞİVİ</h1>
-
       <p class="desc">
         Yetkisiz erişim tespit edildi.
         Deney kayıtları sınıflandırılmıştır.
         Bileşik V temasından sonra ortaya çıkan güçler ve limitleri kayıt altına alınır.
       </p>
-
       <button id="injectBtn" type="button">BİLEŞİK V ENJEKTE ET</button>
-
       <div class="warning">UYARI: DENEK STABİLİTESİ GARANTİ EDİLEMEZ</div>
     </div>
-
     <div class="visual-panel">
       <div class="visual-img"></div>
       <div class="system-line">AKTİF DENEK: <span>214</span></div>
       <div class="system-line">BAŞARISIZ DENEY: <span class="danger">83</span></div>
       <div class="system-line">KARARSIZ MUTASYON: <span>12</span></div>
-      <div class="system-line">SİSTEM DURUMU: <span>GİZLİ ERİŞİM</span></div>
+      <div class="system-line">ÇİFT MUTASYON ORANI: <span>%3</span></div>
     </div>
   </section>
-
   <section class="loader-screen" id="loader">
     <div class="loader-box">
       <div class="loader-title">DENEY PROSEDÜRÜ BAŞLATILDI</div>
-
       <div class="bar">
         <div class="bar-fill" id="barFill"></div>
       </div>
-
       <div class="loading-text" id="loadingText">
         Bileşik V hazırlanıyor...
       </div>
     </div>
   </section>
-
   <section class="result-section" id="result">
     <div class="power-card" id="powerCard">
       <div class="file-code" id="fileCode">VX-000</div>
-
       <h2 id="powerName">Güç Adı</h2>
-
       <p id="powerDesc">Güç açıklaması burada görünecek.</p>
-
       <div class="limit">
         <strong>Limit:</strong>
         <p id="powerLimit">Gücün sınırı burada görünecek.</p>
       </div>
-
       <button class="again" id="restartBtn" type="button">YENİ DENEY BAŞLAT</button>
     </div>
   </section>
-
   <script>
     const powers = [
       {
@@ -352,9 +302,9 @@
       },
       {
         code: "VX-047",
-        name: "Telepati",
-        desc: "Kullanıcı yakın mesafedeki kişilerin düşüncelerini algılayabilir ve zayıf zihinler üzerinde kısa süreli baskı kurabilir.",
-        limit: "Kalabalık alanlarda kontrol zorlaşır. Güçlü zihinsel dirence sahip kişilerde etkisi azalır."
+        name: "Zihin Okuma",
+        desc: "Kullanıcı yaklaşık 15 metre içerisindeki kişilerin yüzeysel düşüncelerini algılayabilir. Yoğun odaklanma ile kısa süreli zihinsel bilgi çekebilir.",
+        limit: "Kalabalık alanlarda düşünceler birbirine karışabilir. Güçlü zihinsel dirence sahip kişilerde etkisi ciddi şekilde azalır."
       },
       {
         code: "VX-052",
@@ -469,9 +419,50 @@
         name: "Metal Manipülasyonu",
         desc: "Kullanıcı çevresindeki metal nesneleri zihinsel olarak kontrol edebilir, şekillerini değiştirebilir ve yüksek hızlarda hareket ettirebilir. Yeterli metal yoğunluğu bulunan bir bölgede küçük bir semti yok edebilecek seviyede yıkıcı saldırılar oluşturabilir.",
         limit: "Güç büyük ölçüde çevredeki metal miktarına bağlıdır. Metal yoğunluğunun düşük olduğu bölgelerde etkinliği ciddi şekilde azalır."
+      },
+      {
+        code: "VX-294",
+        name: "Sınırlı Hipnoz",
+        desc: "Kullanıcı göz teması kurduğu bir kişiyi kısa süreliğine telkine açık hale getirebilir. Basit komutlar verebilir ve hedefin dikkatini yaklaşık 20 saniye boyunca yönlendirebilir.",
+        limit: "Güç yalnızca tek hedef üzerinde çalışır. Güçlü iradeye sahip kişilerde etkisi azalır. Hedefe zarar verecek veya karakterine tamamen aykırı komutlar genellikle başarısız olur."
+      },
+      {
+        code: "VX-308",
+        name: "Telekinezi",
+        desc: "Kullanıcı yaklaşık 40 metre mesafe içerisindeki nesneleri zihinsel olarak kontrol edebilir. Küçük kamyon ağırlığına kadar cisimleri kaldırabilir, yüksek hızda savurabilir ve metal yüzeylerde ciddi yapısal hasar oluşturabilir.",
+        limit: "Güç aynı anda en fazla 3 büyük nesne üzerinde tam kontrol sağlayabilir. Aşırı kullanım yoğun migren, burun ve göz kanaması ile geçici bilinç kaybına neden olabilir."
+      },
+      {
+        code: "VX-319",
+        name: "Fiziksel Yenilenme",
+        desc: "Kullanıcının bedeni fiziksel yaralanmaları insanüstü hızda yenileyebilir. Derin kesikler saniyeler içinde kapanabilir, kırık kemikler birkaç dakika içerisinde kaynayabilir ve ağır iç kanamalar kısa sürede durdurulabilir.",
+        limit: "Yenilenme yalnızca fiziksel hasarlar üzerinde etkilidir. Beynin tamamen yok olması veya vücudun büyük bölümünün parçalanması durumunda güç yetersiz kalabilir. Sürekli yenilenme aşırı enerji ve besin tüketimine neden olur."
+      },
+      {
+        code: "VX-331",
+        name: "Işınlanma",
+        desc: "Kullanıcı görüş alanı içerisindeki bir noktaya anlık olarak ışınlanabilir. Tek seferde yaklaşık 120 metre mesafeye kadar geçiş yapabilir.",
+        limit: "Arka arkaya kullanım yoğun baş dönmesi ve mide bulantısına neden olur. Kullanıcı görüş alanı dışında veya tamamen bilinmeyen bölgelere güvenli şekilde ışınlanamaz."
+      },
+      {
+        code: "VX-344",
+        name: "Meteorolojik Algı",
+        desc: "Kullanıcı bulunduğu bölgedeki hava olaylarını kusursuz doğrulukla tahmin edebilir. Fırtına, yağmur, sıcaklık değişimi, yıldırım ve rüzgar hareketlerini günler öncesinden algılayabilir.",
+        limit: "Herhangi bir aktif fiziksel saldırı veya savunma yeteneği sağlamaz."
+      },
+      {
+        code: "VX-356",
+        name: "Süper İşitme",
+        desc: "Kullanıcı normal insanlardan çok daha düşük ses frekanslarını duyabilir ve yaklaşık 300 metre uzaklıktaki konuşmaları ayırt edebilir. Kalp atışı ve mekanik titreşimler gibi zayıf sesleri algılayabilir.",
+        limit: "Ani yüksek sesler ve patlamalar kullanıcıyı geçici olarak sersemletebilir. Kalabalık ve yoğun gürültülü ortamlarda odaklanmak zorlaşır."
+      },
+      {
+        code: "VX-369",
+        name: "Para Sıçma",
+        desc: "Kullanıcının sindirim sistemi biyolojik atık yerine gerçek madeni ve kağıt paralar üretebilir. Üretilen paralar fiziksel olarak normal para ile aynı özelliklere sahiptir ve kullanılabilir durumdadır.",
+        limit: "Günlük üretim miktarı sınırlıdır. Büyük miktarda üretim ciddi karın ağrısı, iç tahriş, sıvı kaybı ve fiziksel tükenmeye neden olabilir."
       }
     ];
-
     const loadingMessages = [
       "Bileşik V hazırlanıyor...",
       "Denek stabilitesi kontrol ediliyor...",
@@ -479,109 +470,92 @@
       "Hücresel mutasyon başlatıldı...",
       "Genetik tepki analiz ediliyor...",
       "Kararsız mutasyon riski ölçülüyor...",
+      "Çift mutasyon ihtimali taranıyor...",
       "Güç verisi oluşturuluyor..."
     ];
-
     const hero = document.getElementById("hero");
     const loader = document.getElementById("loader");
     const result = document.getElementById("result");
     const loadingText = document.getElementById("loadingText");
     const barFill = document.getElementById("barFill");
     const powerCard = document.getElementById("powerCard");
-
     const fileCode = document.getElementById("fileCode");
     const powerName = document.getElementById("powerName");
     const powerDesc = document.getElementById("powerDesc");
     const powerLimit = document.getElementById("powerLimit");
-
     const injectBtn = document.getElementById("injectBtn");
     const restartBtn = document.getElementById("restartBtn");
-
     let messageInterval;
     let resultTimeout;
-
     function startInjection() {
       hero.style.display = "none";
       result.style.display = "none";
       loader.style.display = "flex";
-
       powerCard.classList.remove("double", "failed");
-
       clearInterval(messageInterval);
       clearTimeout(resultTimeout);
-
       barFill.classList.remove("active");
       void barFill.offsetWidth;
       barFill.classList.add("active");
-
       let index = 0;
       loadingText.textContent = loadingMessages[index];
-
       messageInterval = setInterval(function () {
         index++;
-
         if (index < loadingMessages.length) {
           loadingText.textContent = loadingMessages[index];
         } else {
           clearInterval(messageInterval);
         }
-      }, 600);
-
+      }, 500);
       resultTimeout = setTimeout(showPower, 4300);
     }
-
     function showPower() {
       const chance = Math.random();
-
       loader.style.display = "none";
       result.style.display = "flex";
-
       powerCard.classList.remove("double", "failed");
-
       if (chance <= 0.20) {
         powerCard.classList.add("failed");
-
         fileCode.textContent = "VX-000";
         powerName.textContent = "Deney Başarısız";
         powerDesc.textContent = "Bileşik V denek üzerinde stabil bir mutasyon oluşturamadı. Herhangi bir aktif yetenek tespit edilmedi.";
         powerLimit.textContent = "Denek normal insan seviyesinde kaldı.";
         return;
       }
-
       if (chance >= 0.97) {
         powerCard.classList.add("double");
-
         const firstPower = powers[Math.floor(Math.random() * powers.length)];
         let secondPower = powers[Math.floor(Math.random() * powers.length)];
-
         while (firstPower.name === secondPower.name) {
           secondPower = powers[Math.floor(Math.random() * powers.length)];
         }
-
         fileCode.textContent = firstPower.code + " / " + secondPower.code;
         powerName.textContent = "Çift Mutasyon Tespit Edildi";
-        powerDesc.textContent = firstPower.name + " + " + secondPower.name;
-        powerLimit.textContent = firstPower.limit + " | " + secondPower.limit;
+        powerDesc.innerHTML =
+          "<strong>" + firstPower.name + ":</strong><br>" +
+          firstPower.desc +
+          "<br><br><strong>" + secondPower.name + ":</strong><br>" +
+          secondPower.desc;
+        powerLimit.innerHTML =
+          "<strong>" + firstPower.name + " Limiti:</strong><br>" +
+          firstPower.limit +
+          "<br><br><strong>" + secondPower.name + " Limiti:</strong><br>" +
+          secondPower.limit;
         return;
       }
-
       const randomPower = powers[Math.floor(Math.random() * powers.length)];
-
       fileCode.textContent = randomPower.code;
       powerName.textContent = randomPower.name;
       powerDesc.textContent = randomPower.desc;
       powerLimit.textContent = randomPower.limit;
     }
-
     function restart() {
       result.style.display = "none";
       loader.style.display = "none";
       hero.style.display = "flex";
     }
-
     injectBtn.addEventListener("click", startInjection);
     restartBtn.addEventListener("click", restart);
   </script>
-
 </body>
 </html>
