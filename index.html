@@ -1,204 +1,375 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rastgele Süper Güç</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bileşik V Arşivi</title>
 
-<style>
-body{
-    margin:0;
-    min-height:100vh;
-    background:radial-gradient(circle at top, #ffd700, #b8860b 60%, #1a1200);
-    color:white;
-    font-family:Arial, sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-.container{
-    width:90%;
-    max-width:500px;
-    background:rgba(0,0,0,0.55);
-    padding:30px;
-    border-radius:25px;
-    box-shadow:0 0 30px rgba(0,200,255,0.35);
-    border:1px solid rgba(255,255,255,0.15);
-}
+    body {
+      min-height: 100vh;
+      background: #05070c;
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
 
-h1{
-    font-size:32px;
-    margin-bottom:10px;
-}
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px;
+      background:
+        linear-gradient(90deg, #05070c 35%, rgba(5,7,12,0.75)),
+        url("https://images.unsplash.com/photo-1581093458791-9d09cc7d0a88?auto=format&fit=crop&w=1400&q=80");
+      background-size: cover;
+      background-position: center;
+    }
 
-.desc{
-    color:#ccc;
-    margin-bottom:25px;
-}
+    .hero-content {
+      max-width: 560px;
+      z-index: 2;
+    }
 
-button{
-    padding:16px 30px;
-    font-size:20px;
-    border:none;
-    border-radius:15px;
-    background:linear-gradient(135deg,#ff3c3c,#8b0000);
-    color:white;
-    cursor:pointer;
-    font-weight:bold;
-    transition:0.3s;
-}
+    .tag {
+      color: #38bdf8;
+      letter-spacing: 4px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
 
-button:hover{
-    transform:scale(1.07);
-    box-shadow:0 0 20px #00c6ff;
-}
+    h1 {
+      font-size: 58px;
+      line-height: 1;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
 
-#sonuc{
-    margin-top:30px;
-    text-align:left;
-    background:rgba(255,255,255,0.08);
-    padding:22px;
-    border-radius:18px;
-    display:none;
-    animation:fadeIn 0.6s ease;
-}
+    .desc {
+      color: #cbd5e1;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 35px;
+    }
 
-.guc-resim{
-    width:100%;
-    border-radius:15px;
-    margin-bottom:20px;
-    max-height:250px;
-    object-fit:cover;
-}
+    button {
+      background: #0f172a;
+      border: 1px solid #38bdf8;
+      color: #e0f2fe;
+      padding: 15px 26px;
+      font-size: 15px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 18px rgba(56,189,248,0.25);
+    }
 
-.guc-adi{
-    text-align:center;
-    font-size:27px;
-    color:#00ffcc;
-    margin-bottom:15px;
-}
+    button:hover {
+      background: #38bdf8;
+      color: #020617;
+      box-shadow: 0 0 30px rgba(56,189,248,0.65);
+    }
 
-.info{
-    margin:12px 0;
-    line-height:1.5;
-}
+    .warning {
+      margin-top: 25px;
+      color: #ef4444;
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
 
-.label{
-    color:#00c6ff;
-    font-weight:bold;
-}
+    .loader-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.96);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      flex-direction: column;
+      text-align: center;
+    }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
-}
-</style>
+    .loader-box {
+      width: 80%;
+      max-width: 500px;
+      border: 1px solid #1e40af;
+      padding: 35px;
+      background: rgba(15, 23, 42, 0.8);
+      box-shadow: 0 0 40px rgba(59,130,246,0.25);
+    }
+
+    .loader-title {
+      color: #38bdf8;
+      letter-spacing: 3px;
+      margin-bottom: 25px;
+    }
+
+    .bar {
+      width: 100%;
+      height: 14px;
+      background: #020617;
+      overflow: hidden;
+      border: 1px solid #334155;
+      margin-bottom: 20px;
+    }
+
+    .bar-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #1d4ed8, #38bdf8);
+      animation: load 4s forwards;
+    }
+
+    @keyframes load {
+      to {
+        width: 100%;
+      }
+    }
+
+    .loading-text {
+      color: #e5e7eb;
+      font-size: 16px;
+      min-height: 24px;
+    }
+
+    .result-section {
+      display: none;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background:
+        radial-gradient(circle at top, rgba(14,165,233,0.15), transparent 45%),
+        #05070c;
+    }
+
+    .power-card {
+      width: 100%;
+      max-width: 430px;
+      background: #0f172a;
+      border: 1px solid #1e40af;
+      padding: 28px;
+      box-shadow: 0 0 35px rgba(59,130,246,0.25);
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .file-code {
+      color: #38bdf8;
+      font-size: 13px;
+      letter-spacing: 3px;
+      margin-bottom: 14px;
+    }
+
+    .power-card h2 {
+      font-size: 34px;
+      margin-bottom: 18px;
+    }
+
+    .power-card p {
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .limit {
+      border-top: 1px solid #334155;
+      padding-top: 18px;
+      color: #fca5a5;
+    }
+
+    .again {
+      margin-top: 24px;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 30px;
+        background-position: center;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .desc {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1>Rastgele Süper Güç</h1>
-    <p class="desc">Butona bas ve sana hangi gücün verildiğini öğren.</p>
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="tag">VOUGHT DENEY ARŞİVİ</div>
 
-    <button onclick="gucVer()">Gücümü Ver</button>
+      <h1>BİLEŞİK V ARŞİVİ</h1>
 
-    <div id="sonuc"></div>
-</div>
+      <p class="desc">
+        Yetkisiz erişim tespit edildi.  
+        Deney kayıtları sınıflandırılmıştır.  
+        Bileşik V temasından sonra ortaya çıkan güçler ve limitleri kayıt altına alınır.
+      </p>
 
-<script>
-const gucler = [
-  {
-    isim:"🔥 Alev Hükümdarlığı",
-    seviye:"Mahalle Seviyesi",
-    aciklama:"Kullanıcı kendi alevini üretebilir, yönlendirebilir ve bedenini yüksek ısıya dayanıklı hale getirebilir.",
-    limit:"Maksimum gücüyle yaklaşık bir mahalleyi yok edebilecek kadar ısı ve patlama gücü çıkarabilir. Şehir çapında yangın felaketi yaratamaz.",
-    resim:"https://s13.gifyu.com/images/bIqCa.png"
-  },
-  {
-    isim:"⚡ Fırtına Yıldırımı",
-    seviye:"Şehir İçi Savaş Seviyesi",
-    aciklama:"Kullanıcı elektrik üretebilir, yıldırım darbeleri indirebilir ve elektronik sistemleri bozabilir.",
-    limit:"En fazla birkaç binayı aynı anda kullanılamaz hale getirecek elektrik gücü çıkarabilir. Tüm şehri karartacak seviyeye ulaşamaz.",
-    resim:"https://s13.gifyu.com/images/bIqFW.png"
-  },
-  {
-    isim:"🌪️ Kasırga Nefesi",
-    seviye:"Mahalle Seviyesi",
-    aciklama:"Kullanıcı güçlü rüzgar akımları oluşturabilir, keskin hava darbeleri ve savunma bariyerleri yaratabilir.",
-    limit:"Maksimumda birkaç sokak genişliğinde yıkıcı rüzgar oluşturabilir. Gerçek bir şehir çapı kasırga yaratamaz.",
-    resim:"https://s13.gifyu.com/images/bIqFD.png"
-  },
-  {
-    isim:"🌊 Derin Deniz Kontrolü",
-    seviye:"Mahalle Seviyesi",
-    aciklama:"Kullanıcı çevredeki suyu kontrol edebilir, basınçlı su saldırıları ve su kalkanları oluşturabilir.",
-    limit:"En fazla küçük bir mahalleyi su altında bırakabilecek kadar suyu kontrol edebilir. Denizleri veya okyanusları kontrol edemez.",
-    resim:"https://s13.gifyu.com/images/bIqUS.png"
-  },
-  {
-    isim:"❄️ Mutlak Buz Alanı",
-    seviye:"Bina - Mahalle Seviyesi",
-    aciklama:"Kullanıcı buz üretebilir, zemini dondurabilir ve düşmanlarını buzla kısıtlayabilir.",
-    limit:"Maksimumda birkaç binayı ve çevresindeki sokakları dondurabilir. Bütün bir şehri buzul çağına çeviremez.",
-    resim:"https://s13.gifyu.com/images/bIqU7.png"
-  },
-  {
-    isim:"🌌 Yerçekimi Baskısı",
-    seviye:"Şehir Seviyesi",
-    aciklama:"Kullanıcı belirli alanlarda yerçekimini artırabilir, azaltabilir veya hedefleri yere sabitleyebilir.",
-    limit:"En fazla birkaç kilometrelik alanı etkileyebilir. Bir ülke veya gezegen çapında yerçekimi değişimi yapamaz.",
-    resim:"https://s13.gifyu.com/images/bIqUc.png"
-  },
-  {
-    isim:"🩸 Kan Demirciliği",
-    seviye:"Tehlikeli Yakın Savaş Seviyesi",
-    aciklama:"Kullanıcı kendi kanını sertleştirerek silah, zincir ve zırh benzeri yapılar oluşturabilir.",
-    limit:"Maksimumda bina seviyesinde yıkım yaratabilir. Fazla kullanımda kendi kan kaybı yüzünden ciddi şekilde zayıflar.",
-    resim:"https://s13.gifyu.com/images/bIqUV.png"
-  },
-  {
-    isim:"☠️ Gölge Geçidi",
-    seviye:"Suikast / Gizlilik Seviyesi",
-    aciklama:"Kullanıcı karanlık alanlarda gölgeler arasında hareket edebilir ve gölgeden saldırılar oluşturabilir.",
-    limit:"En fazla bir bina kompleksi içinde etkili olur. Açık ve parlak ışıklı alanlarda gücü ciddi şekilde düşer.",
-    resim:"https://s13.gifyu.com/images/bIqUf.jpg"
-  },
-  {
-    isim:"🌀 Kısa Mesafe Işınlanma",
-    seviye:"Taktiksel Üstünlük Seviyesi",
-    aciklama:"Kullanıcı görüş alanındaki noktalara anlık olarak yer değiştirebilir.",
-    limit:"Tek ışınlanmada en fazla birkaç yüz metre hareket edebilir. Görmediği veya bilmediği yerlere ışınlanamaz.",
-    resim:"https://s13.gifyu.com/images/bIqUD.webp"
-  },
-  {
-    isim:"🐉 Ejderha Uyanışı",
-    seviye:"Küçük Kasaba Seviyesi",
-    aciklama:"Kullanıcı yarı-ejderha formuna geçerek fiziksel güç, sert deri, kanat ve enerji nefesi kazanır.",
-    limit:"Maksimum gücüyle küçük bir kasabayı ağır hasara uğratabilir. Büyük şehirleri tek başına yok edecek seviyede değildir.",
-    resim:"https://s13.gifyu.com/images/bIqUO.jpg"
-  }
-];
+      <button onclick="startInjection()">BİLEŞİK V ENJEKTE ET</button>
 
-function gucVer(){
-    const guc = gucler[Math.floor(Math.random() * gucler.length)];
-    const sonuc = document.getElementById("sonuc");
+      <div class="warning">UYARI: DENEK STABİLİTESİ GARANTİ EDİLEMEZ</div>
+    </div>
+  </section>
 
-    sonuc.style.display = "block";
+  <section class="loader-screen" id="loader">
+    <div class="loader-box">
+      <div class="loader-title">DENEY PROSEDÜRÜ BAŞLATILDI</div>
 
-    sonuc.innerHTML = `
-        <img src="${guc.resim}" class="guc-resim">
+      <div class="bar">
+        <div class="bar-fill"></div>
+      </div>
 
-        <div class="guc-adi">${guc.isim}</div>
+      <div class="loading-text" id="loadingText">
+        Bileşik V hazırlanıyor...
+      </div>
+    </div>
+  </section>
 
-        <div class="info"><span class="label">Seviye:</span> ${guc.seviye}</div>
-        <div class="info"><span class="label">Açıklama:</span> ${guc.aciklama}</div>
-        <div class="info"><span class="label">Limit:</span> ${guc.limit}</div>
-    `;
-}
-</script>
+  <section class="result-section" id="result">
+    <div class="power-card">
+      <div class="file-code" id="fileCode">VX-000</div>
+
+      <h2 id="powerName">Güç Adı</h2>
+
+      <p id="powerDesc">
+        Güç açıklaması burada görünecek.
+      </p>
+
+      <div class="limit">
+        <strong>Limit:</strong>
+        <p id="powerLimit">
+          Gücün sınırı burada görünecek.
+        </p>
+      </div>
+
+      <button class="again" onclick="restart()">YENİ DENEY BAŞLAT</button>
+    </div>
+  </section>
+
+  <script>
+    const powers = [
+      {
+        code: "VX-014",
+        name: "Ateş Manipülasyonu",
+        desc: "Kullanıcı ateş üretebilir, yönlendirebilir ve çevresindeki yanıcı maddeleri tutuşturabilir. Yüksek sıcaklığa karşı doğal direnç kazanır.",
+        limit: "Maksimum etki alanı mahalle seviyesindedir. Uzun süreli kullanım vücut ısısını tehlikeli seviyeye çıkarır."
+      },
+      {
+        code: "VX-021",
+        name: "Elektrik Manipülasyonu",
+        desc: "Kullanıcı elektrik enerjisi üretebilir, bedeninden boşaltabilir ve yakın mesafedeki elektronik sistemleri bozabilir.",
+        limit: "Yüksek güç kullanımı sinir sistemini zorlar. Suda kullanım kontrolsüz elektrik yayılımına neden olabilir."
+      },
+      {
+        code: "VX-033",
+        name: "Görünmezlik",
+        desc: "Kullanıcı ışığı bedeninin çevresinde bükerek görünmez hale gelebilir. Sessiz hareket ettiğinde fark edilmesi oldukça zordur.",
+        limit: "Termal kameralar ve fiziksel temas kullanıcıyı tespit edebilir. Uzun kullanım yoğun baş ağrısı oluşturur."
+      },
+      {
+        code: "VX-047",
+        name: "Telepati",
+        desc: "Kullanıcı yakın mesafedeki kişilerin düşüncelerini algılayabilir ve zayıf zihinler üzerinde kısa süreli baskı kurabilir.",
+        limit: "Kalabalık alanlarda kontrol zorlaşır. Güçlü zihinsel dirence sahip kişilerde etkisi azalır."
+      },
+      {
+        code: "VX-052",
+        name: "Buz Manipülasyonu",
+        desc: "Kullanıcı çevresindeki nemi dondurabilir, buz yapıları oluşturabilir ve temas ettiği yüzeyleri hızla soğutabilir.",
+        limit: "Kuru ve sıcak ortamlarda gücün etkisi azalır. Aşırı kullanım kullanıcının kas hareketlerini yavaşlatır."
+      },
+      {
+        code: "VX-066",
+        name: "Kan Manipülasyonu",
+        desc: "Kullanıcı kendi kanını kontrol edebilir, şekillendirebilir ve sertleştirerek saldırı ya da savunma amacıyla kullanabilir.",
+        limit: "Güç doğrudan kullanıcının kan miktarına bağlıdır. Fazla kullanım bilinç kaybına neden olabilir."
+      },
+      {
+        code: "VX-073",
+        name: "Yer Çekimi Kontrolü",
+        desc: "Kullanıcı sınırlı bir alan içinde yer çekimini artırabilir veya azaltabilir. Ağır nesneleri bastırabilir ya da havaya kaldırabilir.",
+        limit: "Alan genişledikçe kontrol zayıflar. Yüksek yoğunluklu kullanım iç organlarda baskı oluşturabilir."
+      },
+      {
+        code: "VX-088",
+        name: "Derin Deniz Kontrolü",
+        desc: "Kullanıcı su kütlelerini hareket ettirebilir, basınç dalgaları oluşturabilir ve su altında normalden daha uzun süre kalabilir.",
+        limit: "Güç büyük ölçüde çevredeki su miktarına bağlıdır. Karada etkisi ciddi şekilde azalır."
+      }
+    ];
+
+    const loadingMessages = [
+      "Bileşik V hazırlanıyor...",
+      "Denek stabilitesi kontrol ediliyor...",
+      "Kana Bileşik V enfekte ediliyor...",
+      "Hücresel mutasyon başlatıldı...",
+      "Genetik tepki analiz ediliyor...",
+      "Kararsız mutasyon riski ölçülüyor...",
+      "Güç verisi oluşturuluyor..."
+    ];
+
+    function startInjection() {
+      document.getElementById("hero").style.display = "none";
+      document.getElementById("loader").style.display = "flex";
+
+      let index = 0;
+      const loadingText = document.getElementById("loadingText");
+
+      const messageInterval = setInterval(() => {
+        loadingText.textContent = loadingMessages[index];
+        index++;
+
+        if (index >= loadingMessages.length) {
+          clearInterval(messageInterval);
+        }
+      }, 600);
+
+      setTimeout(showPower, 4300);
+    }
+
+    function showPower() {
+      const randomPower = powers[Math.floor(Math.random() * powers.length)];
+
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("result").style.display = "flex";
+
+      document.getElementById("fileCode").textContent = randomPower.code;
+      document.getElementById("powerName").textContent = randomPower.name;
+      document.getElementById("powerDesc").textContent = randomPower.desc;
+      document.getElementById("powerLimit").textContent = randomPower.limit;
+    }
+
+    function restart() {
+      document.getElementById("result").style.display = "none";
+      document.getElementById("hero").style.display = "flex";
+    }
+  </script>
 
 </body>
 </html>
