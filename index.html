@@ -463,19 +463,75 @@
 
       setTimeout(showPower, 4300);
     }
+ function showPower() {
 
-    function showPower() {
-      const failedChance = Math.random();
+  const chance = Math.random();
 
-      loader.style.display = "none";
-      result.style.display = "flex";
+  loader.style.display = "none";
+  result.style.display = "flex";
 
-      if (failedChance <= 0.20) {
-        fileCode.textContent = "VX-000";
-        powerName.textContent = "Deney Başarısız";
-        powerDesc.textContent = "Bileşik V denek üzerinde stabil bir mutasyon oluşturamadı. Herhangi bir aktif yetenek tespit edilmedi.";
-        powerLimit.textContent = "Denek normal insan seviyesinde kaldı.";
-        return;
+  // %20 başarısız deney
+  if (chance <= 0.20) {
+
+    fileCode.textContent = "VX-000";
+
+    powerName.textContent = "Deney Başarısız";
+
+    powerDesc.textContent =
+      "Bileşik V denek üzerinde stabil bir mutasyon oluşturamadı. Herhangi bir aktif yetenek tespit edilmedi.";
+
+    powerLimit.textContent =
+      "Denek normal insan seviyesinde kaldı.";
+
+    return;
+  }
+
+  // %3 çift mutasyon
+  if (chance >= 0.97) {
+
+    const firstPower =
+      powers[Math.floor(Math.random() * powers.length)];
+
+    let secondPower =
+      powers[Math.floor(Math.random() * powers.length)];
+
+    while (firstPower.name === secondPower.name) {
+      secondPower =
+        powers[Math.floor(Math.random() * powers.length)];
+    }
+
+    fileCode.textContent =
+      firstPower.code + " / " + secondPower.code;
+
+    powerName.textContent =
+      "Çift Mutasyon Tespit Edildi";
+
+    powerDesc.textContent =
+      firstPower.name + " + " + secondPower.name;
+
+    powerLimit.textContent =
+      firstPower.limit + " | " + secondPower.limit;
+
+    return;
+  }
+
+  // normal güç sistemi
+  const randomPower =
+    powers[Math.floor(Math.random() * powers.length)];
+
+  fileCode.textContent =
+    randomPower.code;
+
+  powerName.textContent =
+    randomPower.name;
+
+  powerDesc.textContent =
+    randomPower.desc;
+
+  powerLimit.textContent =
+    randomPower.limit;
+}
+    
       }
 
       const randomPower = powers[Math.floor(Math.random() * powers.length)];
