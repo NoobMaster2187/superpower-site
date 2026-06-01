@@ -24,7 +24,6 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      justify-content: space-between;
       padding: 60px;
       background:
         linear-gradient(90deg, #05070c 35%, rgba(5,7,12,0.75)),
@@ -124,6 +123,9 @@
       width: 0%;
       height: 100%;
       background: linear-gradient(90deg, #1d4ed8, #38bdf8);
+    }
+
+    .bar-fill.active {
       animation: load 4s forwards;
     }
 
@@ -203,7 +205,6 @@
     @media (max-width: 768px) {
       .hero {
         padding: 30px;
-        background-position: center;
       }
 
       h1 {
@@ -231,7 +232,7 @@
         Bileşik V temasından sonra ortaya çıkan güçler ve limitleri kayıt altına alınır.
       </p>
 
-      <button onclick="startInjection()">BİLEŞİK V ENJEKTE ET</button>
+      <button id="injectBtn">BİLEŞİK V ENJEKTE ET</button>
 
       <div class="warning">UYARI: DENEK STABİLİTESİ GARANTİ EDİLEMEZ</div>
     </div>
@@ -242,7 +243,7 @@
       <div class="loader-title">DENEY PROSEDÜRÜ BAŞLATILDI</div>
 
       <div class="bar">
-        <div class="bar-fill"></div>
+        <div class="bar-fill" id="barFill"></div>
       </div>
 
       <div class="loading-text" id="loadingText">
@@ -257,53 +258,49 @@
 
       <h2 id="powerName">Güç Adı</h2>
 
-      <p id="powerDesc">
-        Güç açıklaması burada görünecek.
-      </p>
+      <p id="powerDesc">Güç açıklaması burada görünecek.</p>
 
       <div class="limit">
         <strong>Limit:</strong>
-        <p id="powerLimit">
-          Gücün sınırı burada görünecek.
-        </p>
+        <p id="powerLimit">Gücün sınırı burada görünecek.</p>
       </div>
 
-      <button class="again" onclick="restart()">YENİ DENEY BAŞLAT</button>
+      <button class="again" id="restartBtn">YENİ DENEY BAŞLAT</button>
     </div>
   </section>
 
   <script>
     const powers = [
       {
-  code: "VX-111",
-  name: "Süper Hız",
-  desc: "Kullanıcı yaklaşık 15 saniye boyunca saatte 480 kilometre hıza ulaşabilir. Bu süreçte refleksleri ve tepki süresi de aynı oranda artar.",
-  limit: "15 saniyelik kullanım sonrasında yoğun enerji kaybı oluşur. Arka arkaya kullanım kas yırtılması, iç kanama ve geçici bilinç kaybına neden olabilir."
-},
-{
-  code: "VX-124",
-  name: "Hayvan Kontrolü",
-  desc: "Kullanıcı yaklaşık 50 metre yarıçap içerisindeki hayvanlarla zihinsel bağlantı kurabilir ve basit komutlar verebilir. Düşük zekalı canlılar üzerinde kontrol daha etkilidir.",
-  limit: "Aynı anda çok fazla canlı kontrol edilmeye çalışıldığında zihinsel baskı oluşur. Büyük ve saldırgan hayvanlar kontrolü reddedebilir."
-},
-{
-  code: "VX-138",
-  name: "Kütle Azaltma",
-  desc: "Kullanıcı temas ettiği nesnelerin ağırlığını yaklaşık %50 oranında azaltabilir. Etki yaklaşık 30 saniye boyunca devam eder.",
-  limit: "Canlı organizmalar üzerinde çalışmaz. Büyük yapılar ve aşırı ağır nesnelerde etki süresi ciddi şekilde azalır."
-},
-{
-  code: "VX-149",
-  name: "Hastalık Direnci",
-  desc: "Kullanıcının bağışıklık sistemi bilinen bakteri, virüs ve enfeksiyonlara karşı olağanüstü direnç gösterir. Hastalık belirtileri büyük ölçüde baskılanır.",
-  limit: "Fiziksel yaralanmaları iyileştirmez. Yoğun toksinler, radyasyon ve bilinmeyen biyolojik mutasyonlar üzerinde etkisi sınırlıdır."
-},
+        code: "VX-111",
+        name: "Süper Hız",
+        desc: "Kullanıcı yaklaşık 15 saniye boyunca saatte 480 kilometre hıza ulaşabilir. Bu süreçte refleksleri ve tepki süresi de aynı oranda artar.",
+        limit: "15 saniyelik kullanım sonrasında yoğun enerji kaybı oluşur. Arka arkaya kullanım kas yırtılması, iç kanama ve geçici bilinç kaybına neden olabilir."
+      },
       {
-  code: "VX-159",
-  name: "Uzaktan Kanal Değiştirme",
-  desc: "Kullanıcı televizyon kanallarını fiziksel temas olmadan değiştirebilir.",
-  limit: "Menzil yaklaşık 8 metre ile sınırlıdır."
-},
+        code: "VX-124",
+        name: "Hayvan Kontrolü",
+        desc: "Kullanıcı yaklaşık 50 metre yarıçap içerisindeki hayvanlarla zihinsel bağlantı kurabilir ve basit komutlar verebilir. Düşük zekalı canlılar üzerinde kontrol daha etkilidir.",
+        limit: "Aynı anda çok fazla canlı kontrol edilmeye çalışıldığında zihinsel baskı oluşur. Büyük ve saldırgan hayvanlar kontrolü reddedebilir."
+      },
+      {
+        code: "VX-138",
+        name: "Kütle Azaltma",
+        desc: "Kullanıcı temas ettiği nesnelerin ağırlığını yaklaşık %50 oranında azaltabilir. Etki yaklaşık 30 saniye boyunca devam eder.",
+        limit: "Canlı organizmalar üzerinde çalışmaz. Büyük yapılar ve aşırı ağır nesnelerde etki süresi ciddi şekilde azalır."
+      },
+      {
+        code: "VX-149",
+        name: "Hastalık Direnci",
+        desc: "Kullanıcının bağışıklık sistemi bilinen bakteri, virüs ve enfeksiyonlara karşı olağanüstü direnç gösterir. Hastalık belirtileri büyük ölçüde baskılanır.",
+        limit: "Fiziksel yaralanmaları iyileştirmez. Yoğun toksinler, radyasyon ve bilinmeyen biyolojik mutasyonlar üzerinde etkisi sınırlıdır."
+      },
+      {
+        code: "VX-159",
+        name: "Uzaktan Kanal Değiştirme",
+        desc: "Kullanıcı televizyon kanallarını fiziksel temas olmadan değiştirebilir.",
+        limit: "Menzil yaklaşık 8 metre ile sınırlıdır."
+      },
       {
         code: "VX-014",
         name: "Ateş Manipülasyonu",
@@ -370,18 +367,42 @@
       "Güç verisi oluşturuluyor..."
     ];
 
+    const hero = document.getElementById("hero");
+    const loader = document.getElementById("loader");
+    const result = document.getElementById("result");
+    const loadingText = document.getElementById("loadingText");
+    const barFill = document.getElementById("barFill");
+
+    const fileCode = document.getElementById("fileCode");
+    const powerName = document.getElementById("powerName");
+    const powerDesc = document.getElementById("powerDesc");
+    const powerLimit = document.getElementById("powerLimit");
+
+    const injectBtn = document.getElementById("injectBtn");
+    const restartBtn = document.getElementById("restartBtn");
+
+    let messageInterval;
+
     function startInjection() {
-      document.getElementById("hero").style.display = "none";
-      document.getElementById("loader").style.display = "flex";
+      hero.style.display = "none";
+      result.style.display = "none";
+      loader.style.display = "flex";
+
+      clearInterval(messageInterval);
+
+      barFill.classList.remove("active");
+      void barFill.offsetWidth;
+      barFill.classList.add("active");
 
       let index = 0;
-      const loadingText = document.getElementById("loadingText");
+      loadingText.textContent = loadingMessages[index];
 
-      const messageInterval = setInterval(() => {
-        loadingText.textContent = loadingMessages[index];
+      messageInterval = setInterval(() => {
         index++;
 
-        if (index >= loadingMessages.length) {
+        if (index < loadingMessages.length) {
+          loadingText.textContent = loadingMessages[index];
+        } else {
           clearInterval(messageInterval);
         }
       }, 600);
@@ -392,29 +413,33 @@
     function showPower() {
       const failedChance = Math.random();
 
-      document.getElementById("loader").style.display = "none";
-      document.getElementById("result").style.display = "flex";
+      loader.style.display = "none";
+      result.style.display = "flex";
 
       if (failedChance <= 0.20) {
-        document.getElementById("fileCode").textContent = "VX-000";
-        document.getElementById("powerName").textContent = "Deney Başarısız";
-        document.getElementById("powerDesc").textContent = "Bileşik V denek üzerinde stabil bir mutasyon oluşturamadı. Herhangi bir aktif yetenek tespit edilmedi.";
-        document.getElementById("powerLimit").textContent = "Denek normal insan seviyesinde kaldı.";
+        fileCode.textContent = "VX-000";
+        powerName.textContent = "Deney Başarısız";
+        powerDesc.textContent = "Bileşik V denek üzerinde stabil bir mutasyon oluşturamadı. Herhangi bir aktif yetenek tespit edilmedi.";
+        powerLimit.textContent = "Denek normal insan seviyesinde kaldı.";
         return;
       }
 
       const randomPower = powers[Math.floor(Math.random() * powers.length)];
 
-      document.getElementById("fileCode").textContent = randomPower.code;
-      document.getElementById("powerName").textContent = randomPower.name;
-      document.getElementById("powerDesc").textContent = randomPower.desc;
-      document.getElementById("powerLimit").textContent = randomPower.limit;
+      fileCode.textContent = randomPower.code;
+      powerName.textContent = randomPower.name;
+      powerDesc.textContent = randomPower.desc;
+      powerLimit.textContent = randomPower.limit;
     }
 
     function restart() {
-      document.getElementById("result").style.display = "none";
-      document.getElementById("hero").style.display = "flex";
+      result.style.display = "none";
+      loader.style.display = "none";
+      hero.style.display = "flex";
     }
+
+    injectBtn.addEventListener("click", startInjection);
+    restartBtn.addEventListener("click", restart);
   </script>
 
 </body>
