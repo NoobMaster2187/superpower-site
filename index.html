@@ -226,8 +226,8 @@
       <h1>BİLEŞİK V ARŞİVİ</h1>
 
       <p class="desc">
-        Yetkisiz erişim tespit edildi.  
-        Deney kayıtları sınıflandırılmıştır.  
+        Yetkisiz erişim tespit edildi.
+        Deney kayıtları sınıflandırılmıştır.
         Bileşik V temasından sonra ortaya çıkan güçler ve limitleri kayıt altına alınır.
       </p>
 
@@ -281,12 +281,11 @@
         limit: "Maksimum etki alanı mahalle seviyesindedir. Uzun süreli kullanım vücut ısısını tehlikeli seviyeye çıkarır."
       },
       {
-  code: "VX-096",
-  name: "Süper Görüş",
-  desc: "Kullanıcı uzak mesafeleri normal insanlardan çok daha net görebilir. Düşük ışıklı ortamlarda görüş kabiliyeti artar ve küçük detayları kolayca fark edebilir.",
-  limit: "Yoğun ışık, ani flaşlar ve hızlı hareket eden görüntüler gözlerde aşırı zorlanmaya neden olabilir. Duvar arkası veya tamamen kapalı alanları göremez."
-  }
-  
+        code: "VX-096",
+        name: "Süper Görüş",
+        desc: "Kullanıcı uzak mesafeleri normal insanlardan çok daha net görebilir. Düşük ışıklı ortamlarda görüş kabiliyeti artar ve küçük detayları kolayca fark edebilir.",
+        limit: "Yoğun ışık, ani flaşlar ve hızlı hareket eden görüntüler gözlerde aşırı zorlanmaya neden olabilir. Duvar arkası veya tamamen kapalı alanları göremez."
+      },
       {
         code: "VX-021",
         name: "Elektrik Manipülasyonu",
@@ -361,45 +360,25 @@
     }
 
     function showPower() {
+      const failedChance = Math.random();
 
-  const failedChance = Math.random();
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("result").style.display = "flex";
 
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("result").style.display = "flex";
+      if (failedChance <= 0.20) {
+        document.getElementById("fileCode").textContent = "VX-000";
+        document.getElementById("powerName").textContent = "Deney Başarısız";
+        document.getElementById("powerDesc").textContent = "Bileşik V denek üzerinde stabil bir mutasyon oluşturamadı. Herhangi bir aktif yetenek tespit edilmedi.";
+        document.getElementById("powerLimit").textContent = "Denek normal insan seviyesinde kaldı.";
+        return;
+      }
 
-  // %20 başarısız deney
-  if (failedChance <= 0.20) {
+      const randomPower = powers[Math.floor(Math.random() * powers.length)];
 
-    document.getElementById("fileCode").textContent = "VX-000";
-
-    document.getElementById("powerName").textContent =
-      "Deney Başarısız";
-
-    document.getElementById("powerDesc").textContent =
-      "Bileşik V denek üzerinde stabil bir mutasyon oluşturamadı. Herhangi bir aktif yetenek tespit edilmedi.";
-
-    document.getElementById("powerLimit").textContent =
-      "Denek normal insan seviyesinde kaldı.";
-
-    return;
-  }
-
-  // Normal güç sistemi
-  const randomPower =
-    powers[Math.floor(Math.random() * powers.length)];
-
-  document.getElementById("fileCode").textContent =
-    randomPower.code;
-
-  document.getElementById("powerName").textContent =
-    randomPower.name;
-
-  document.getElementById("powerDesc").textContent =
-    randomPower.desc;
-
-  document.getElementById("powerLimit").textContent =
-    randomPower.limit;
-}
+      document.getElementById("fileCode").textContent = randomPower.code;
+      document.getElementById("powerName").textContent = randomPower.name;
+      document.getElementById("powerDesc").textContent = randomPower.desc;
+      document.getElementById("powerLimit").textContent = randomPower.limit;
     }
 
     function restart() {
